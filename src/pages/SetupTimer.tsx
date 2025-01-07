@@ -55,9 +55,6 @@ function TimerSetup() {
     });
   }, [refs, selected]);
 
-  // TODO: https://stackoverflow.com/questions/54719260/curved-header-with-pure-css
-  // TODO: https://mui.com/toolpad/studio/reference/components/date-picker/
-
   return (
     <div
       style={{
