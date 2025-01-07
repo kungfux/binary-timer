@@ -6,8 +6,8 @@ import React from "react";
 
 function TimerSetup() {
   const navigate = useNavigate();
-  const [selected, setSelected] = useState(Array(10).fill(0) as number[]);
-  const refs = Array.from({ length: 10 }, () =>
+  const [selected, setSelected] = useState(Array(12).fill(0) as number[]);
+  const refs = Array.from({ length: 12 }, () =>
     React.createRef<{
       isSelected: () => boolean;
       setAsSelected: (setAsSelected: boolean) => void;
@@ -39,7 +39,12 @@ function TimerSetup() {
   };
 
   const secondsToArray = (seconds: number) => {
-    return seconds.toString(2).split("").map(Number).reverse();
+    return seconds
+      .toString(2)
+      .padStart(12, "0")
+      .split("")
+      .map(Number)
+      .reverse();
   };
 
   useEffect(() => {
@@ -64,13 +69,21 @@ function TimerSetup() {
       }}
     >
       <h1 style={{ textTransform: "uppercase" }}>Binary timer</h1>
-      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
-        {[10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map((value) => (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          flexWrap: "wrap",
+        }}
+      >
+        {selected.map((_value, index) => (
           <BitButton
-            key={value}
-            ref={refs[value - 1]}
+            key={selected.length - index - 1}
+            ref={refs[selected.length - index - 1]}
             isClickable={true}
-            onClick={() => handleBitClick(value - 1)}
+            onClick={() => handleBitClick(selected.length - index - 1)}
           />
         ))}
       </div>
@@ -88,8 +101,16 @@ function TimerSetup() {
       </button>
       <hr />
       <p style={{ marginRight: ".5rem" }}>Presets:</p>
-      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
-        {[1, 2, 3, 5, 10, 15].map((value) => (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          flexWrap: "wrap",
+        }}
+      >
+        {[1, 2, 3, 5, 10, 15, 30, 60].map((value) => (
           <button
             className="secondary"
             key={value}

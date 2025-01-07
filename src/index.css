@@ -121,8 +121,8 @@ button.secondary:focus-visible {
   }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1220px) {
   #root {
-    width: 500px;
+    width: 465px;
   }
 }

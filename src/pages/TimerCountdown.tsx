@@ -33,7 +33,7 @@ function TimerCountdown() {
 
     const binaryTime = timeLeft
       .toString(2)
-      .padStart(10, "0")
+      .padStart(12, "0")
       .split("")
       .reverse();
 
@@ -66,11 +66,13 @@ function TimerCountdown() {
         style={{
           display: "flex",
           flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
           flexWrap: "wrap",
           marginTop: "2rem",
         }}
       >
-        {[10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map((value) => (
+        {[12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map((value) => (
           <BitButton key={value} ref={refs[value - 1]} isClickable={false} />
         ))}
       </div>

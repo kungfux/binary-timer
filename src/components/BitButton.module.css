@@ -1,7 +1,8 @@
-button.bitbutton {
+.button {
   height: 5rem;
   width: 5rem;
-  margin-left: 1rem;
+  margin-left: .5rem;
+  margin-right: .5rem;
   margin-bottom: 1rem;
   background-color: #61dafb;
   border: none;
@@ -15,7 +16,19 @@ button.bitbutton {
   }
 }
 
-button.hovered,
-button.selected {
+.button:nth-child(1),
+.button:nth-child(5),
+.button:nth-child(9) {
+  margin-left: 1rem;
+}
+
+.button:nth-child(4),
+.button:nth-child(8),
+.button:nth-child(12) {
+  margin-right: 1rem;
+}
+
+.button.hovered,
+.button.selected {
   background-color: #21a1f1;
 }
