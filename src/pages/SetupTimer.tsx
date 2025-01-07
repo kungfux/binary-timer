@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import BitButton from "../components/BitButton";
@@ -8,7 +8,10 @@ function TimerSetup() {
   const navigate = useNavigate();
   const [selected, setSelected] = useState(Array(10).fill(0) as number[]);
   const refs = Array.from({ length: 10 }, () =>
-    React.createRef<{ isSelected: () => boolean }>()
+    React.createRef<{
+      isSelected: () => boolean;
+      setAsSelected: (setAsSelected: boolean) => void;
+    }>()
   );
 
   const handleStartClick = () => {
@@ -30,8 +33,22 @@ function TimerSetup() {
   };
 
   const secondsToMinutes = (seconds: number) => {
-    return `${Math.floor(seconds / 60)} minute(s) ${seconds % 60} second(s)`;
+    return `${Math.floor(seconds / 60)} minute(s) and ${
+      seconds % 60
+    } second(s)`;
   };
+
+  const secondsToArray = (seconds: number) => {
+    return seconds.toString(2).split("").map(Number).reverse();
+  };
+
+  useEffect(() => {
+    refs.map((ref, index) => {
+      if (ref.current?.isSelected() !== (selected[index] === 1)) {
+        ref.current?.setAsSelected(selected[index] === 1);
+      }
+    });
+  }, [refs, selected]);
 
   // TODO: https://stackoverflow.com/questions/54719260/curved-header-with-pure-css
   // TODO: https://mui.com/toolpad/studio/reference/components/date-picker/
@@ -65,6 +82,20 @@ function TimerSetup() {
       <button className="primary" onClick={handleStartClick}>
         Start
       </button>
+      <hr />
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <p style={{ marginRight: ".5rem" }}>Presets:</p>
+
+        {[1, 2, 3, 5, 10, 15].map((value) => (
+          <button
+            className="secondary"
+            key={value}
+            onClick={() => setSelected(secondsToArray(value * 60))}
+          >
+            {value}m
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

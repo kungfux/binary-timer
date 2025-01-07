@@ -43,6 +43,11 @@ h1 {
   line-height: 1.1;
 }
 
+hr {
+  margin: 2rem;
+  width: 80%;
+}
+
 button {
   color: #000;
   background-color: #fff;
@@ -67,6 +72,30 @@ button.primary:hover {
 }
 button.primary:focus,
 button.primary:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+button.secondary {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 400;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  padding: .5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: fit-content;
+  opacity: .75;
+  margin: .5rem;
+}
+button.secondary:hover {
+  border-color: #646cff;
+}
+button.secondary:focus,
+button.secondary:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
