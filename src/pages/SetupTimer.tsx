@@ -59,8 +59,8 @@ function TimerSetup() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        textAlign: "center",
         alignItems: "center",
+        textAlign: "center",
       }}
     >
       <h1 style={{ textTransform: "uppercase" }}>Binary timer</h1>

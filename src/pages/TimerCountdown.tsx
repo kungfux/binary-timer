@@ -50,9 +50,26 @@ function TimerCountdown() {
   }, [timeLeft, navigate, refs]);
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        marginTop: "50px",
+      }}
+    >
       <h1>We'll be right back!</h1>
-      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
+      <hr />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          marginTop: "2rem",
+        }}
+      >
         {[10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map((value) => (
           <BitButton key={value} ref={refs[value - 1]} isClickable={false} />
         ))}
