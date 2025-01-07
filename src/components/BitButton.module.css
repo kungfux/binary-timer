@@ -28,7 +28,7 @@
   margin-right: 1rem;
 }
 
-.button.hovered,
-.button.selected {
+.hovered,
+.selected {
   background-color: #21a1f1;
 }

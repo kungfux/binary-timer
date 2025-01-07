@@ -94,28 +94,34 @@ function TimerSetup() {
         onClick={handleStartClick}
         disabled={!selected.some((x) => x === 1)}
       >
-        Start
+        🚀 Start
       </button>
-      <hr />
-      <p style={{ marginTop: 0, marginBottom: "1rem" }}>Presets:</p>
       <div
         style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          flexWrap: "wrap",
+          marginTop: "2rem",
+          borderRadius: "1rem",
         }}
       >
-        {[1, 2, 3, 5, 10, 15, 30, 60].map((value) => (
-          <button
-            className="secondary"
-            key={value}
-            onClick={() => setSelected(secondsToArray(value * 60))}
-          >
-            {value}m
-          </button>
-        ))}
+        <p style={{ marginBottom: "1rem" }}>Presets:</p>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          {[1, 2, 3, 5, 10, 15, 30, 60].map((value) => (
+            <button
+              className="secondary"
+              key={value}
+              onClick={() => setSelected(secondsToArray(value * 60))}
+            >
+              {value}m
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
