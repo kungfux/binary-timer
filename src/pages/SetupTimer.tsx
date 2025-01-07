@@ -83,9 +83,8 @@ function TimerSetup() {
         Start
       </button>
       <hr />
-      <div style={{ display: "flex", flexDirection: "row" }}>
-        <p style={{ marginRight: ".5rem" }}>Presets:</p>
-
+      <p style={{ marginRight: ".5rem" }}>Presets:</p>
+      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
         {[1, 2, 3, 5, 10, 15].map((value) => (
           <button
             className="secondary"

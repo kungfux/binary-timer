@@ -112,3 +112,9 @@ button.secondary:focus-visible {
     background-color: #000;
   }
 }
+
+@media (max-width: 960px) {
+  #root {
+    width: 500px;
+  }
+}

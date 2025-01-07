@@ -15,27 +15,7 @@ button.bitbutton {
   }
 }
 
-button.hovered {
-  background-color: #21a1f1;
-}
-
+button.hovered,
 button.selected {
   background-color: #21a1f1;
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-button.bitbutton .text {
-  animation: fadeIn 0.3s ease-in-out;
-  transition: transform 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
