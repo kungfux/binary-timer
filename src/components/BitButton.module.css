@@ -1,4 +1,4 @@
-button {
+button.bitbutton {
   height: 5rem;
   width: 5rem;
   margin-left: 1rem;
@@ -11,11 +11,11 @@ button {
   font-family: 'Montserrat', sans-serif;
 }
 
-.hovered {
+button.hovered {
   background-color: #21a1f1;
 }
 
-.selected {
+button.selected {
     background-color: #21a1f1;
     outline: 4px auto -webkit-focus-ring-color;
   }

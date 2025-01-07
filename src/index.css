@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -35,7 +35,7 @@ h1 {
   line-height: 1.1;
 }
 
-/* button {
+button.primary {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -46,13 +46,13 @@ h1 {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
+button.primary:hover {
   border-color: #646cff;
 }
-button:focus,
-button:focus-visible {
+button.primary:focus,
+button.primary:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-} */
+}
 
 @media (prefers-color-scheme: light) {
   :root {

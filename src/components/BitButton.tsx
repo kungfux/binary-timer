@@ -1,7 +1,7 @@
 import { forwardRef, useImperativeHandle, useState } from "react";
 
 import "@fontsource/montserrat/400.css";
-import "./BitButton.css";
+import styles from "./BitButton.module.css";
 
 const BitButton = forwardRef(
   (
@@ -28,9 +28,9 @@ const BitButton = forwardRef(
     }));
 
     const getClassName = (): string => {
-      if (hovered && selected) return "hovered selected";
-      if (selected) return "selected";
-      if (hovered) return "hovered";
+      if (hovered && selected) return `${styles.hovered} ${styles.selected}`;
+      if (selected) return props.isClickable ? styles.selected : styles.hovered;
+      if (hovered) return styles.hovered;
       return "";
     };
 
@@ -43,7 +43,7 @@ const BitButton = forwardRef(
 
     return (
       <button
-        className={getClassName()}
+        className={`${styles.bitbutton} ${getClassName()}`}
         onMouseEnter={() => props.isClickable && setHovered(true)}
         onMouseLeave={() => props.isClickable && setHovered(false)}
         onClick={() => props.isClickable && handleClick()}

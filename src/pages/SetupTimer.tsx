@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import BitButton from "../components/BitButton";
 import React from "react";
 
@@ -58,9 +59,11 @@ function TimerSetup() {
       <p>
         {selected.some((x) => x === 1)
           ? `${secondsToMinutes(binaryToDecimal(selected))}`
-          : "Select a square to start the timer"}
+          : "Select bits and click Start"}
       </p>
-      <button onClick={handleStartClick}>Start</button>
+      <button className="primary" onClick={handleStartClick}>
+        Start
+      </button>
     </div>
   );
 }
