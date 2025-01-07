@@ -43,9 +43,10 @@ function TimerSetup() {
         flexDirection: "column",
         justifyContent: "center",
         textAlign: "center",
+        alignItems: "center",
       }}
     >
-      <h1>{"Binary countdown".toUpperCase()}</h1>
+      <h1 style={{ textTransform: "uppercase" }}>Binary timer</h1>
       <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
         {[10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map((value) => (
           <BitButton

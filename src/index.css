@@ -23,16 +23,29 @@ a:hover {
 }
 
 body {
+  font-family:'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  align-items: center;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+button {
+  color: #000;
+  background-color: #fff;
 }
 
 button.primary {
@@ -42,9 +55,12 @@ button.primary {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  padding: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  width: fit-content;
 }
 button.primary:hover {
   border-color: #646cff;
@@ -63,6 +79,7 @@ button.primary:focus-visible {
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    color: #ffffff;
+    background-color: #000;
   }
 }
