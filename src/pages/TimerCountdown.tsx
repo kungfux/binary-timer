@@ -57,7 +57,6 @@ function TimerCountdown() {
         justifyContent: "center",
         alignItems: "center",
         textAlign: "center",
-        marginTop: "50px",
       }}
     >
       <h1>We'll be right back!</h1>
