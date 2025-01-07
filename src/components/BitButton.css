@@ -1,0 +1,21 @@
+button {
+  height: 5rem;
+  width: 5rem;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 2rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.hovered {
+  background-color: #21a1f1;
+}
+
+.selected {
+    background-color: #21a1f1;
+    outline: 4px auto -webkit-focus-ring-color;
+  }
