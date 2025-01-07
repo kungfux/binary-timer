@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 
 import "@fontsource/montserrat/400.css";
 import styles from "./BitButton.module.css";
@@ -13,12 +13,15 @@ const BitButton = forwardRef(
   ) => {
     const [hovered, setHovered] = useState(false);
     const [selected, setSelected] = useState(false);
+    const [animate, setAnimate] = useState(false);
 
     const isSelected = (): boolean => {
       return selected;
     };
 
     const setAsSelected = (isSelected: boolean) => {
+      setAnimate(false);
+      setTimeout(() => setAnimate(true), 1);
       setSelected(isSelected);
     };
 
@@ -35,11 +38,15 @@ const BitButton = forwardRef(
     };
 
     const handleClick = () => {
+      setAnimate(false);
+      setTimeout(() => setAnimate(true), 1);
       setSelected(!selected);
       if (props.onClick) {
         props.onClick();
       }
     };
+
+    useEffect(() => {}, [animate]);
 
     return (
       <button
@@ -48,7 +55,9 @@ const BitButton = forwardRef(
         onMouseLeave={() => props.isClickable && setHovered(false)}
         onClick={() => props.isClickable && handleClick()}
       >
-        {selected ? "1" : "0"}
+        <span className={animate ? styles.text : ""}>
+          {selected ? "1" : "0"}
+        </span>
       </button>
     );
   }

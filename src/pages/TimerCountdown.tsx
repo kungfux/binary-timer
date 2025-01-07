@@ -19,7 +19,10 @@ function TimerCountdown() {
     getInitialTime(searchParams.get("time"))
   );
   const refs = Array.from({ length: 10 }, () =>
-    React.createRef<{ setAsSelected: (isSelected: boolean) => void }>()
+    React.createRef<{
+      isSelected: () => boolean;
+      setAsSelected: (setAsSelected: boolean) => void;
+    }>()
   );
 
   useEffect(() => {
@@ -35,7 +38,9 @@ function TimerCountdown() {
       .reverse();
 
     refs.map((ref, index) => {
-      ref.current?.setAsSelected(binaryTime[index] === "1");
+      if (ref.current?.isSelected() !== (binaryTime[index] === "1")) {
+        ref.current?.setAsSelected(binaryTime[index] === "1");
+      }
     });
 
     const timer = setTimeout(() => {
