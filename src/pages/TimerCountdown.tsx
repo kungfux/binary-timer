@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import BitButton from "../components/BitButton";
 import React from "react";
+import { Button, ButtonType } from "../components/Button";
 
 const getInitialTime = (queryParamTime: string | null): number => {
   const time = queryParamTime;
@@ -75,13 +76,12 @@ function TimerCountdown() {
           <BitButton key={value} ref={refs[value - 1]} isClickable={false} />
         ))}
       </div>
-      <button
+      <Button
         style={{ marginTop: "2rem" }}
-        className="primary"
+        type={ButtonType.Primary}
+        text="🛑 Stop"
         onClick={() => navigate("/")}
-      >
-        ↩️ Go back
-      </button>
+      />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import BitButton from "../components/BitButton";
 import React from "react";
+import { Button, ButtonType } from "../components/Button";
 
 function TimerSetup() {
   const navigate = useNavigate();
@@ -89,13 +90,12 @@ function TimerSetup() {
           ? `${secondsToMinutes(binaryToDecimal(selected))}`
           : "Select bits and click Start"}
       </p>
-      <button
-        className="primary"
+      <Button
+        type={ButtonType.Primary}
+        text="🚀 Start"
         onClick={handleStartClick}
         disabled={!selected.some((x) => x === 1)}
-      >
-        🚀 Start
-      </button>
+      />
       <div
         style={{
           marginTop: "2rem",
@@ -113,13 +113,11 @@ function TimerSetup() {
           }}
         >
           {[1, 2, 3, 5, 10, 15, 30, 60].map((value) => (
-            <button
-              className="secondary"
-              key={value}
+            <Button
+              type={ButtonType.Secondary}
+              text={`${value}m`}
               onClick={() => setSelected(secondsToArray(value * 60))}
-            >
-              {value}m
-            </button>
+            />
           ))}
         </div>
       </div>
