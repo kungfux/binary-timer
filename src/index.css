@@ -30,12 +30,9 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0;
-  display: flex;
+  min-height: 100vh;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
-  align-items: center;
 }
 
 h1 {
@@ -123,6 +120,7 @@ button.secondary:focus-visible {
 
 @media (max-width: 1220px) {
   #root {
-    width: 465px;
+    min-width: 400px;
+    width: 400px;
   }
 }

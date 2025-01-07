@@ -97,7 +97,7 @@ function TimerSetup() {
         Start
       </button>
       <hr />
-      <p style={{ marginRight: ".5rem" }}>Presets:</p>
+      <p style={{ marginTop: 0, marginBottom: "1rem" }}>Presets:</p>
       <div
         style={{
           display: "flex",
