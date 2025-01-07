@@ -53,6 +53,12 @@ button {
   background-color: #fff;
 }
 
+button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed !important;
+}
+
 button.primary {
   border-radius: 8px;
   border: 1px solid transparent;

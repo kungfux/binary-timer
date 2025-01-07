@@ -79,7 +79,11 @@ function TimerSetup() {
           ? `${secondsToMinutes(binaryToDecimal(selected))}`
           : "Select bits and click Start"}
       </p>
-      <button className="primary" onClick={handleStartClick}>
+      <button
+        className="primary"
+        onClick={handleStartClick}
+        disabled={!selected.some((x) => x === 1)}
+      >
         Start
       </button>
       <hr />
