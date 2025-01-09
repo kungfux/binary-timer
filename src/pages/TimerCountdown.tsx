@@ -19,12 +19,24 @@ function TimerCountdown() {
   const [timeLeft, setTimeLeft] = useState(
     getInitialTime(searchParams.get("time"))
   );
-  const refs = Array.from({ length: 10 }, () =>
+  const refs = Array.from({ length: 12 }, () =>
     React.createRef<{
       isSelected: () => boolean;
       setAsSelected: (setAsSelected: boolean) => void;
     }>()
   );
+
+  const maxTime = Math.pow(2, refs.length) - 1;
+
+  const addTime = (seconds: number) => {
+    setTimeLeft((prev) => {
+      const next = prev + seconds;
+      if (next > maxTime) {
+        return maxTime;
+      }
+      return next;
+    });
+  };
 
   useEffect(() => {
     if (timeLeft <= 0) {
@@ -60,28 +72,63 @@ function TimerCountdown() {
         textAlign: "center",
       }}
     >
-      <h1 style={{ textTransform: "uppercase" }}>Please stand by</h1>
       <div
         style={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          flexWrap: "wrap",
-          marginTop: "2rem",
-          marginBottom: "2rem",
+          textAlign: "center",
         }}
       >
-        {[12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map((value) => (
-          <BitButton key={value} ref={refs[value - 1]} isClickable={false} />
-        ))}
+        <h1 style={{ textTransform: "uppercase" }}>Please stand by</h1>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            flexWrap: "wrap",
+            marginTop: "2rem",
+            marginBottom: "2rem",
+          }}
+        >
+          {[12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map((value) => (
+            <BitButton key={value} ref={refs[value - 1]} isClickable={false} />
+          ))}
+        </div>
+        <Button
+          style={{ marginTop: "2rem" }}
+          type={ButtonType.Primary}
+          text="🛑 Stop"
+          onClick={() => navigate("/")}
+        />
       </div>
-      <Button
-        style={{ marginTop: "2rem" }}
-        type={ButtonType.Primary}
-        text="🛑 Stop"
-        onClick={() => navigate("/")}
-      />
+      <div
+        style={{
+          marginTop: "2rem",
+          borderRadius: "1rem",
+        }}
+      >
+        <p style={{ marginBottom: "1rem" }}>Prolong by:</p>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          {[1, 2, 3, 5, 10, 15, 30, 60].map((value) => (
+            <Button
+              type={ButtonType.Secondary}
+              text={`${value}m`}
+              onClick={() => addTime(value * 60)}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

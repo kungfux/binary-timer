@@ -66,7 +66,7 @@ function TimerSetup() {
         textAlign: "center",
       }}
     >
-      <h1 style={{ textTransform: "uppercase" }}>Binary timer</h1>
+      <h1 style={{ textTransform: "uppercase" }}>12-bit Binary timer</h1>
       <div
         style={{
           display: "flex",
@@ -74,6 +74,7 @@ function TimerSetup() {
           justifyContent: "center",
           alignItems: "center",
           flexWrap: "wrap",
+          marginTop: "2rem",
         }}
       >
         {selected.map((_value, index) => (

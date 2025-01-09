@@ -15,6 +15,7 @@ const Button = ({
 }) => {
   return (
     <button
+      key={crypto.randomUUID()}
       style={style}
       className={[
         styles.button,
