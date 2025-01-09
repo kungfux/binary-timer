@@ -58,3 +58,10 @@
 .button.secondary:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
+
+@media (prefers-color-scheme: light) {
+    .button {
+        color: #fff;
+        background-color: #000;
+    }
+}

@@ -10,27 +10,25 @@ function App() {
           <Route path="/" element={<TimerSetup />} />
           <Route path="/timer" element={<TimerCountdown />} />
         </Routes>
-      </div>
-      <div
-        style={{
-          position: "fixed",
-          bottom: "0",
-          left: "0",
-          width: "100%",
-          height: "3rem",
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
-          color: "white",
-          padding: "1rem",
-          textAlign: "center",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "row",
-          gap: "1rem",
-          zIndex: -1,
-        }}
-      >
-        <p>Binary Timer ❤️ kungfux &copy; {new Date().getFullYear()} </p>
+        <div
+          style={{
+            position: "fixed",
+            bottom: "0",
+            left: "0",
+            width: "100vw",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            color: "white",
+            padding: ".5rem",
+            textAlign: "center",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "row",
+            zIndex: -1,
+          }}
+        >
+          <p>Binary Timer ❤️ kungfux &copy; {new Date().getFullYear()}</p>
+        </div>
       </div>
     </>
   );
