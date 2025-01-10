@@ -38,11 +38,24 @@ function TimerCountdown() {
     });
   };
 
-  useEffect(() => {
+  useEffect(() =>{
     if (timeLeft <= 0) {
-      navigate("/");
-      return;
+      const addTimeBlock = document.getElementById(
+        "add-time"
+      ) as HTMLDivElement;
+      addTimeBlock.classList.add("disabled");
+      const audio = document.getElementById("doo") as HTMLAudioElement;
+      audio.onended = () => {
+        navigate("/");
+      };
+      audio.play();
     }
+
+    if (timeLeft > 0 && timeLeft < 3) {
+      const audio = document.getElementById("bee") as HTMLAudioElement;
+      audio.play();
+    }
+
 
     const binaryTime = timeLeft
       .toString(2)
@@ -63,15 +76,9 @@ function TimerCountdown() {
   }, [timeLeft, navigate, refs]);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-      }}
-    >
+    <>
+      <audio id="bee" src="bee.mp3" preload="auto" />
+      <audio id="doo" src="doo.mp3" preload="auto" />
       <div
         style={{
           display: "flex",
@@ -81,55 +88,70 @@ function TimerCountdown() {
           textAlign: "center",
         }}
       >
-        <h1 style={{ textTransform: "uppercase" }}>Please stand by</h1>
         <div
           style={{
             display: "flex",
-            flexDirection: "row",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            flexWrap: "wrap",
+            textAlign: "center",
+          }}
+        >
+          <h1 style={{ textTransform: "uppercase" }}>Please stand by</h1>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              flexWrap: "wrap",
+              marginTop: "2rem",
+              marginBottom: "2rem",
+            }}
+          >
+            {[12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map((value) => (
+              <BitButton
+                key={value}
+                ref={refs[value - 1]}
+                isClickable={false}
+              />
+            ))}
+          </div>
+          <Button
+            style={{ marginTop: "2rem" }}
+            type={ButtonType.Primary}
+            text="🛑 Stop"
+            onClick={() => navigate("/")}
+          />
+        </div>
+        <div
+          id="add-time"
+          style={{
             marginTop: "2rem",
-            marginBottom: "2rem",
+            borderRadius: "1rem",
           }}
         >
-          {[12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map((value) => (
-            <BitButton key={value} ref={refs[value - 1]} isClickable={false} />
-          ))}
-        </div>
-        <Button
-          style={{ marginTop: "2rem" }}
-          type={ButtonType.Primary}
-          text="🛑 Stop"
-          onClick={() => navigate("/")}
-        />
-      </div>
-      <div
-        style={{
-          marginTop: "2rem",
-          borderRadius: "1rem",
-        }}
-      >
-        <p style={{ marginBottom: "1rem" }}>Prolong by:</p>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          {[1, 2, 3, 5, 10, 15, 30, 60].map((value) => (
-            <Button
-              type={ButtonType.Secondary}
-              text={`${value}m`}
-              onClick={() => addTime(value * 60)}
-            />
-          ))}
+          <p style={{ marginBottom: "1rem" }}>Add time:</p>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            {[1, 2, 3, 5, 10, 15, 30, 60].map((value) => (
+              <Button
+                type={ButtonType.Secondary}
+                text={`${value}m`}
+                onClick={() => addTime(value * 60)}
+              />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

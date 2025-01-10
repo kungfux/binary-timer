@@ -58,6 +58,11 @@ h1 {
   flex-direction: row;
 }
 
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
