@@ -4,21 +4,27 @@ import BitButton from "../components/BitButton";
 import React from "react";
 import { Button, ButtonType } from "../components/Button";
 
-const getInitialTime = (queryParamTime: string | null): number => {
-  const time = queryParamTime;
-  if (!time) {
+const getInitialTime = (
+  queryParamTime: string | null,
+  maxTime: number
+): number => {
+  const queryTime = queryParamTime;
+  if (!queryTime) {
     return 0;
   }
 
-  return parseInt(time, 2);
+  const time = parseInt(queryTime, 2);
+
+  if (time > maxTime) {
+    return maxTime;
+  }
+
+  return isNaN(time) ? 0 : time;
 };
 
 function TimerCountdown() {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const [timeLeft, setTimeLeft] = useState(
-    getInitialTime(searchParams.get("time"))
-  );
+
   const refs = Array.from({ length: 12 }, () =>
     React.createRef<{
       isSelected: () => boolean;
@@ -27,6 +33,11 @@ function TimerCountdown() {
   );
 
   const maxTime = Math.pow(2, refs.length) - 1;
+
+  const [searchParams] = useSearchParams();
+  const [timeLeft, setTimeLeft] = useState(
+    getInitialTime(searchParams.get("time"), maxTime)
+  );
 
   const addTime = (seconds: number) => {
     setTimeLeft((prev) => {
@@ -45,10 +56,17 @@ function TimerCountdown() {
       ) as HTMLDivElement;
       addTimeBlock.classList.add("pointer-events-none", "opacity-50");
       const audio = document.getElementById("doo") as HTMLAudioElement;
-      audio.onended = () => {
-        navigate("/");
-      };
-      audio.play();
+
+      audio
+        .play()
+        .then(() => {
+          audio.onended = () => {
+            navigate("/");
+          };
+        })
+        .catch(() => {
+          navigate("/");
+        });
     }
 
     if (timeLeft > 0 && timeLeft < 3) {

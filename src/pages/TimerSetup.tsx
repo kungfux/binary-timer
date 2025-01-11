@@ -16,7 +16,7 @@ function TimerSetup() {
   );
 
   const handleStartClick = () => {
-    navigate(`/timer?time=${selected.reverse().join("")}`);
+    navigate(`?time=${selected.reverse().join("")}`);
   };
 
   const handleBitClick = (refIndex: number) => {

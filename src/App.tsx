@@ -1,16 +1,19 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import TimerSetup from "./pages/TimerSetup";
 import TimerCountdown from "./pages/TimerCountdown";
 import Footer from "./components/Footer";
 
 function App() {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const time = queryParams.get("time");
+
   return (
     <div className="flex flex-col items-center justify-between min-h-screen h-screen min-w-96">
       <div />
       <Routes>
-        <Route path="/" element={<TimerSetup />} />
-        <Route path="/timer" element={<TimerCountdown />} />
+        <Route path="/" element={time ? <TimerCountdown /> : <TimerSetup />} />
       </Routes>
       <Footer />
     </div>
