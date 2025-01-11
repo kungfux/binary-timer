@@ -1,20 +1,19 @@
 import { Routes, Route } from "react-router-dom";
-import TimerSetup from "./pages/SetupTimer";
+
+import TimerSetup from "./pages/TimerSetup";
 import TimerCountdown from "./pages/TimerCountdown";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <>
-      <div style={{ marginBottom: "4rem" }}>
-        <Routes>
-          <Route path="/" element={<TimerSetup />} />
-          <Route path="/timer" element={<TimerCountdown />} />
-        </Routes>
-        <div className="footer">
-          <p>Binary Timer ❤️ kungfux &copy; {new Date().getFullYear()}</p>
-        </div>
-      </div>
-    </>
+    <div className="flex flex-col items-center justify-between min-h-screen h-screen min-w-96">
+      <div />
+      <Routes>
+        <Route path="/" element={<TimerSetup />} />
+        <Route path="/timer" element={<TimerCountdown />} />
+      </Routes>
+      <Footer />
+    </div>
   );
 }
 

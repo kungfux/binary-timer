@@ -1,8 +1,8 @@
-:root {
-  font-family: 'Montserrat', sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+:root {
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
@@ -13,54 +13,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   font-family: 'Montserrat', sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  min-height: 100vh;
-  place-items: center;
-  min-width: 320px;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-  margin-top: 0;
-  margin-bottom: 2rem;
-}
-
-.footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: .5rem;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-}
-
-.disabled {
-  pointer-events: none;
-  opacity: 0.5;
 }
 
 @media (prefers-color-scheme: light) {
@@ -68,21 +22,11 @@ h1 {
     color: #213547;
     background-color: #ffffff;
   }
-
-  a:hover {
-    color: #747bff;
-  }
 }
 
 @media (max-width: 1220px) {
   #root {
     min-width: 400px;
     width: 400px;
-  }
-}
-
-@media ((max-height: 840px) and (max-width: 1220px)) {
-  .footer {
-    display: none;
   }
 }

@@ -4,22 +4,22 @@ const Button = ({
   type,
   text,
   disabled = false,
-  style,
+  className,
   onClick,
 }: {
   type: ButtonType;
   text?: string;
   disabled?: boolean;
-  style?: React.CSSProperties;
+  className?: string;
   onClick?: () => void;
 }) => {
   return (
     <button
       key={crypto.randomUUID()}
-      style={style}
       className={[
         styles.button,
         type === ButtonType.Primary ? styles.primary : styles.secondary,
+        className,
       ].join(" ")}
       disabled={disabled}
       onClick={onClick}

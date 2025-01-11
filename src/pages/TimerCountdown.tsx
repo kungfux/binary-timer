@@ -38,12 +38,12 @@ function TimerCountdown() {
     });
   };
 
-  useEffect(() =>{
+  useEffect(() => {
     if (timeLeft <= 0) {
       const addTimeBlock = document.getElementById(
         "add-time"
       ) as HTMLDivElement;
-      addTimeBlock.classList.add("disabled");
+      addTimeBlock.classList.add("pointer-events-none", "opacity-50");
       const audio = document.getElementById("doo") as HTMLAudioElement;
       audio.onended = () => {
         navigate("/");
@@ -55,7 +55,6 @@ function TimerCountdown() {
       const audio = document.getElementById("bee") as HTMLAudioElement;
       audio.play();
     }
-
 
     const binaryTime = timeLeft
       .toString(2)
@@ -79,36 +78,10 @@ function TimerCountdown() {
     <>
       <audio id="bee" src="bee.mp3" preload="auto" />
       <audio id="doo" src="doo.mp3" preload="auto" />
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-          }}
-        >
-          <h1 style={{ textTransform: "uppercase" }}>Please stand by</h1>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              flexWrap: "wrap",
-              marginTop: "2rem",
-              marginBottom: "2rem",
-            }}
-          >
+      <div className="flex flex-col items-center justify-center text-center">
+        <div className="flex flex-col items-center justify-center text-center">
+          <h1 className="text-5xl uppercase mb-8">Please stand by</h1>
+          <div className="flex flex-row justify-center align-center flex-wrap mt-8 mb-8">
             {[12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map((value) => (
               <BitButton
                 key={value}
@@ -118,31 +91,18 @@ function TimerCountdown() {
             ))}
           </div>
           <Button
-            style={{ marginTop: "2rem" }}
+            className="mt-8"
             type={ButtonType.Primary}
             text="🛑 Stop"
             onClick={() => navigate("/")}
           />
         </div>
-        <div
-          id="add-time"
-          style={{
-            marginTop: "2rem",
-            borderRadius: "1rem",
-          }}
-        >
-          <p style={{ marginBottom: "1rem" }}>Add time:</p>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              flexWrap: "wrap",
-            }}
-          >
+        <div id="add-time" className="mt-8 rounded-2xl">
+          <p className="mb-4">Add time:</p>
+          <div className="flex flex-row justify-center align-center flex-wrap">
             {[1, 2, 3, 5, 10, 15, 30, 60].map((value) => (
               <Button
+                key={value}
                 type={ButtonType.Secondary}
                 text={`${value}m`}
                 onClick={() => addTime(value * 60)}

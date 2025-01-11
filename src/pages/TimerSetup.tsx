@@ -57,26 +57,9 @@ function TimerSetup() {
   }, [refs, selected]);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-      }}
-    >
-      <h1 style={{ textTransform: "uppercase" }}>12-bit Binary timer</h1>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "center",
-          flexWrap: "wrap",
-          marginTop: "2rem",
-        }}
-      >
+    <div className="flex flex-col items-center justify-center text-center">
+      <h1 className="text-5xl uppercase mb-8">12-bit Binary timer</h1>
+      <div className="flex flex-row justify-center align-center flex-wrap mt-8">
         {selected.map((_value, index) => (
           <BitButton
             key={selected.length - index - 1}
@@ -86,7 +69,7 @@ function TimerSetup() {
           />
         ))}
       </div>
-      <p>
+      <p className="my-4">
         {selected.some((x) => x === 1)
           ? `${secondsToMinutes(binaryToDecimal(selected))}`
           : "Select bits and click Start"}
@@ -97,24 +80,12 @@ function TimerSetup() {
         onClick={handleStartClick}
         disabled={!selected.some((x) => x === 1)}
       />
-      <div
-        style={{
-          marginTop: "2rem",
-          borderRadius: "1rem",
-        }}
-      >
-        <p style={{ marginBottom: "1rem" }}>Presets:</p>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-            flexWrap: "wrap",
-          }}
-        >
+      <div className="mt-8">
+        <p className="mb-4">Presets:</p>
+        <div className="flex flex-row justify-center align-center flex-wrap">
           {[1, 2, 3, 5, 10, 15, 30, 60].map((value) => (
             <Button
+              key={value}
               type={ButtonType.Secondary}
               text={`${value}m`}
               onClick={() => setSelected(secondsToArray(value * 60))}
