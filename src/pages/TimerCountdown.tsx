@@ -105,6 +105,14 @@ function TimerCountdown() {
                 key={value}
                 ref={refs[value - 1]}
                 isClickable={false}
+                isSelectedInitially={(() => {
+                  const binaryTime = timeLeft
+                    .toString(2)
+                    .padStart(12, "0")
+                    .split("")
+                    .reverse();
+                  return binaryTime[value - 1] === "1";
+                })()}
               />
             ))}
           </div>

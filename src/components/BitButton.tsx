@@ -7,14 +7,19 @@ import styles from "./BitButton.module.css";
 
 const BitButton = forwardRef(
   (
-    props: {
+    {
+      isClickable,
+      isSelectedInitially = false,
+      onClick,
+    }: {
       isClickable: boolean;
+      isSelectedInitially?: boolean;
       onClick?: () => void;
     },
     ref
   ) => {
     const [hovered, setHovered] = useState(false);
-    const [selected, setSelected] = useState(false);
+    const [selected, setSelected] = useState(isSelectedInitially);
 
     const isSelected = (): boolean => {
       return selected;
@@ -31,24 +36,24 @@ const BitButton = forwardRef(
 
     const getClassName = (): string => {
       if (hovered && selected) return `${styles.hovered} ${styles.selected}`;
-      if (selected) return props.isClickable ? styles.selected : styles.hovered;
+      if (selected) return isClickable ? styles.selected : styles.hovered;
       if (hovered) return styles.hovered;
       return "";
     };
 
     const handleClick = () => {
       setSelected(!selected);
-      if (props.onClick) {
-        props.onClick();
+      if (onClick) {
+        onClick();
       }
     };
 
     return (
       <button
         className={`${styles.button} ${getClassName()}`}
-        onMouseEnter={() => props.isClickable && setHovered(true)}
-        onMouseLeave={() => props.isClickable && setHovered(false)}
-        onClick={() => props.isClickable && handleClick()}
+        onMouseEnter={() => isClickable && setHovered(true)}
+        onMouseLeave={() => isClickable && setHovered(false)}
+        onClick={() => isClickable && handleClick()}
       >
         <NumberFlow value={selected ? 1 : 0} />
       </button>
