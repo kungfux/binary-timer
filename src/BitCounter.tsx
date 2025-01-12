@@ -45,10 +45,18 @@ class BitCounter {
   }
 
   public toString(): string {
-    const seconds = this.getTime();
-    return `${Math.floor(seconds / 60)} minute(s) and ${
-      seconds % 60
-    } second(s)`;
+    const time = this.getTime();
+    const hours = Math.floor(time / 3600);
+    const minutes = Math.floor((time % 3600) / 60);
+    const seconds = time % 60;
+
+    const hoursText = hours > 0 ? `${hours} hour${hours !== 1 ? "s" : ""}` : "";
+    const minutesText =
+      minutes > 0 ? `${minutes} minute${minutes !== 1 ? "s" : ""}` : "";
+    const secondsText =
+      seconds > 0 ? `${seconds} second${seconds !== 1 ? "s" : ""}` : "";
+
+    return `${hoursText} ${minutesText} ${secondsText}`.trim();
   }
 }
 

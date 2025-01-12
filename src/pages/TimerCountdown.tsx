@@ -100,7 +100,7 @@ function TimerCountdown() {
               />
             ))}
           </div>
-          <p className="my-4">{bitCounter.toString() + " left"}</p>
+          <p className="my-4">{bitCounter.toString()}</p>
           <Button
             type={ButtonType.Primary}
             text="🛑 Stop"
