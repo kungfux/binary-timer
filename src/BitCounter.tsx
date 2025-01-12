@@ -1,5 +1,6 @@
 class BitCounter {
   private static MAXIMUM_BITS = 12;
+  private static MAXIMUM_SECONDS = Math.pow(2, BitCounter.MAXIMUM_BITS) - 1;
 
   private static bits = Array(this.MAXIMUM_BITS).fill(0);
 
@@ -18,7 +19,8 @@ class BitCounter {
   }
 
   public setTime(seconds: number): number[] {
-    BitCounter.bits = seconds
+    const secondsToAdd = Math.min(seconds, BitCounter.MAXIMUM_SECONDS);
+    BitCounter.bits = secondsToAdd
       .toString(2)
       .padStart(BitCounter.MAXIMUM_BITS, "0")
       .split("")

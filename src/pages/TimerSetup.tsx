@@ -52,7 +52,7 @@ function TimerSetup() {
             ref={refs[selectedBits.length - index - 1]}
             isClickable={true}
             isSelectedInitially={(() => {
-              return bitCounter.getBits()[index - 1] === 1;
+              return bitCounter.getBits()[selectedBits.length - index - 1] === 1;
             })()}
             onClick={() => handleBitClick(selectedBits.length - index - 1)}
           />
