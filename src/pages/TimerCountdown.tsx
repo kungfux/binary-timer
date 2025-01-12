@@ -88,7 +88,7 @@ function TimerCountdown() {
       <div className="flex flex-col items-center justify-center text-center">
         <div className="flex flex-col items-center justify-center text-center">
           <h1 className="text-5xl uppercase mb-8">Please stand by</h1>
-          <div className="flex flex-row justify-center align-center flex-wrap mt-8 mb-8">
+          <div className="flex flex-row justify-center align-center flex-wrap mt-8">
             {refs.map((_, index) => (
               <BitButton
                 key={refs.length - index - 1}
@@ -100,8 +100,8 @@ function TimerCountdown() {
               />
             ))}
           </div>
+          <p className="my-4">{bitCounter.toString() + " left"}</p>
           <Button
-            className="mt-8"
             type={ButtonType.Primary}
             text="🛑 Stop"
             onClick={() => navigate("/")}

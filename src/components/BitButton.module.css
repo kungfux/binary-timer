@@ -11,6 +11,7 @@
   font-size: 3rem;
   font-family: 'Montserrat', sans-serif;
   overflow: hidden;
+  transition: background-color 0.3s, border-color 0.3s;
 
   & > .text {
     display: inline-block;
