@@ -1,84 +1,73 @@
+import { createRef, useMemo } from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import BitButton from "../components/BitButton";
-import React from "react";
 import { Button, ButtonType } from "../components/Button";
+import BitButton from "../components/BitButton";
+import BitCounter from "../BitCounter";
 
 function TimerSetup() {
   const navigate = useNavigate();
-  const [selected, setSelected] = useState(Array(12).fill(0) as number[]);
-  const refs = Array.from({ length: 12 }, () =>
-    React.createRef<{
-      isSelected: () => boolean;
-      setAsSelected: (setAsSelected: boolean) => void;
-    }>()
+  const bitCounter = useMemo(() => new BitCounter(), []);
+  const [selectedBits, setSelectedBits] = useState(bitCounter.getBits());
+
+  const refs = useMemo(
+    () =>
+      Array.from({ length: bitCounter.getMaximumBits() }, () =>
+        createRef<{
+          isSelected: () => boolean;
+          setAsSelected: (setAsSelected: boolean) => void;
+        }>()
+      ),
+    [bitCounter]
   );
 
   const handleStartClick = () => {
-    navigate(`?time=${selected.reverse().join("")}`);
+    navigate(`?start=${bitCounter.getTime()}`);
   };
 
-  const handleBitClick = (refIndex: number) => {
-    setSelected(
-      selected.map((x, index) =>
-        index === refIndex ? (selected[index] === 1 ? 0 : 1) : x
-      )
-    );
+  const handleBitClick = (index: number) => {
+    setSelectedBits(bitCounter.reverseBit(index));
   };
 
-  const binaryToDecimal = (number: number[]) => {
-    return number.reduce((acc, bit, index) => {
-      return acc + bit * Math.pow(2, index);
-    }, 0);
-  };
-
-  const secondsToMinutes = (seconds: number) => {
-    return `${Math.floor(seconds / 60)} minute(s) and ${
-      seconds % 60
-    } second(s)`;
-  };
-
-  const secondsToArray = (seconds: number) => {
-    return seconds
-      .toString(2)
-      .padStart(12, "0")
-      .split("")
-      .map(Number)
-      .reverse();
+  const handlePresetClick = (seconds: number) => {
+    setSelectedBits(bitCounter.setTime(seconds));
   };
 
   useEffect(() => {
     refs.map((ref, index) => {
-      if (ref.current?.isSelected() !== (selected[index] === 1)) {
-        ref.current?.setAsSelected(selected[index] === 1);
+      if (ref.current?.isSelected() !== (selectedBits[index] === 1)) {
+        ref.current?.setAsSelected(selectedBits[index] === 1);
       }
     });
-  }, [refs, selected]);
+  }, [refs, selectedBits]);
 
   return (
     <div className="flex flex-col items-center justify-center text-center">
       <h1 className="text-5xl uppercase mb-8">12-bit Binary timer</h1>
       <div className="flex flex-row justify-center align-center flex-wrap mt-8">
-        {selected.map((_value, index) => (
+        {selectedBits.map((_, index) => (
           <BitButton
-            key={selected.length - index - 1}
-            ref={refs[selected.length - index - 1]}
+            key={selectedBits.length - index - 1}
+            ref={refs[selectedBits.length - index - 1]}
             isClickable={true}
-            onClick={() => handleBitClick(selected.length - index - 1)}
+            isSelectedInitially={(() => {
+              return bitCounter.getBits()[index - 1] === 1;
+            })()}
+            onClick={() => handleBitClick(selectedBits.length - index - 1)}
           />
         ))}
       </div>
       <p className="my-4">
-        {selected.some((x) => x === 1)
-          ? `${secondsToMinutes(binaryToDecimal(selected))}`
+        {selectedBits.some((x) => x === 1)
+          ? `${bitCounter.toString()}`
           : "Select bits and click Start"}
       </p>
       <Button
         type={ButtonType.Primary}
         text="🚀 Start"
         onClick={handleStartClick}
-        disabled={!selected.some((x) => x === 1)}
+        disabled={!selectedBits.some((x) => x === 1)}
       />
       <div className="mt-8">
         <p className="mb-4">Presets:</p>
@@ -88,7 +77,7 @@ function TimerSetup() {
               key={value}
               type={ButtonType.Secondary}
               text={`${value}m`}
-              onClick={() => setSelected(secondsToArray(value * 60))}
+              onClick={() => handlePresetClick(value * 60)}
             />
           ))}
         </div>

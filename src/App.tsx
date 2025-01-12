@@ -7,13 +7,13 @@ import Footer from "./components/Footer";
 function App() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const time = queryParams.get("time");
+  const startParam = queryParams.get("start");
 
   return (
     <div className="flex flex-col items-center justify-between min-h-screen h-screen min-w-96">
       <div />
       <Routes>
-        <Route path="/" element={time ? <TimerCountdown /> : <TimerSetup />} />
+        <Route path="/" element={startParam ? <TimerCountdown /> : <TimerSetup />} />
       </Routes>
       <Footer />
     </div>
