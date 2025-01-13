@@ -30,11 +30,6 @@ function TimerCountdown() {
     [bitCounter]
   );
 
-  const handleAddTimeClick = (seconds: number) => {
-    bitCounter.addTime(seconds);
-    setTimeLeft(bitCounter.getTime());
-  };
-
   const playCountdownSound = useCallback(() => {
     const audio = document.getElementById("bee") as HTMLAudioElement;
     audio.play();
@@ -81,6 +76,31 @@ function TimerCountdown() {
     return () => clearTimeout(timer);
   }, [timeLeft, navigate, refs, bitCounter, playCountdownSound, playEndSound]);
 
+  const stopButton = useMemo(
+    () => (
+      <Button
+        type={ButtonType.Primary}
+        text="🛑 Stop"
+        onClick={() => navigate("/")}
+      />
+    ),
+    [navigate]
+  );
+
+  const addTimeButtons = useMemo(() => {
+    return [1, 2, 3, 5, 10, 15, 30, 60].map((value) => (
+      <Button
+        key={value}
+        type={ButtonType.Secondary}
+        text={`${value}m`}
+        onClick={() => {
+          bitCounter.addTime(value * 60);
+          setTimeLeft(bitCounter.getTime());
+        }}
+      />
+    ));
+  }, [bitCounter]);
+
   return (
     <>
       <audio id="bee" src="bee.mp3" preload="auto" />
@@ -101,11 +121,7 @@ function TimerCountdown() {
             ))}
           </div>
           <p className="my-4">{bitCounter.toString()}</p>
-          <Button
-            type={ButtonType.Primary}
-            text="🛑 Stop"
-            onClick={() => navigate("/")}
-          />
+          {stopButton}
         </div>
         <div
           className={`mt-8 rounded-2xl ${
@@ -114,14 +130,7 @@ function TimerCountdown() {
         >
           <p className="mb-4">Add time:</p>
           <div className="flex flex-row justify-center align-center flex-wrap">
-            {[1, 2, 3, 5, 10, 15, 30, 60].map((value) => (
-              <Button
-                key={value}
-                type={ButtonType.Secondary}
-                text={`${value}m`}
-                onClick={() => handleAddTimeClick(value * 60)}
-              />
-            ))}
+            {addTimeButtons}
           </div>
         </div>
       </div>

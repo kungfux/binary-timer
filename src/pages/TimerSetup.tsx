@@ -22,16 +22,8 @@ function TimerSetup() {
     [bitCounter]
   );
 
-  const handleStartClick = () => {
-    navigate(`?start=${bitCounter.getTime()}`);
-  };
-
   const handleBitClick = (index: number) => {
     setSelectedBits(bitCounter.reverseBit(index));
-  };
-
-  const handlePresetClick = (seconds: number) => {
-    setSelectedBits(bitCounter.setTime(seconds));
   };
 
   useEffect(() => {
@@ -41,6 +33,29 @@ function TimerSetup() {
       }
     });
   }, [refs, selectedBits]);
+
+  const startButton = useMemo(
+    () => (
+      <Button
+        type={ButtonType.Primary}
+        text="🚀 Start"
+        onClick={() => navigate(`?start=${bitCounter.getTime()}`)}
+        disabled={!selectedBits.some((x) => x === 1)}
+      />
+    ),
+    [bitCounter, navigate, selectedBits]
+  );
+
+  const presetButtons = useMemo(() => {
+    return [1, 2, 3, 5, 10, 15, 30, 60].map((value) => (
+      <Button
+        key={value}
+        type={ButtonType.Secondary}
+        text={`${value}m`}
+        onClick={() => setSelectedBits(bitCounter.setTime(value * 60))}
+      />
+    ));
+  }, [bitCounter]);
 
   return (
     <div className="flex flex-col items-center justify-center text-center">
@@ -52,7 +67,9 @@ function TimerSetup() {
             ref={refs[selectedBits.length - index - 1]}
             isClickable={true}
             isSelectedInitially={(() => {
-              return bitCounter.getBits()[selectedBits.length - index - 1] === 1;
+              return (
+                bitCounter.getBits()[selectedBits.length - index - 1] === 1
+              );
             })()}
             onClick={() => handleBitClick(selectedBits.length - index - 1)}
           />
@@ -63,23 +80,11 @@ function TimerSetup() {
           ? `${bitCounter.toString()}`
           : "Select bits and click Start"}
       </p>
-      <Button
-        type={ButtonType.Primary}
-        text="🚀 Start"
-        onClick={handleStartClick}
-        disabled={!selectedBits.some((x) => x === 1)}
-      />
+      {startButton}
       <div className="mt-8">
         <p className="mb-4">Presets:</p>
         <div className="flex flex-row justify-center align-center flex-wrap">
-          {[1, 2, 3, 5, 10, 15, 30, 60].map((value) => (
-            <Button
-              key={value}
-              type={ButtonType.Secondary}
-              text={`${value}m`}
-              onClick={() => handlePresetClick(value * 60)}
-            />
-          ))}
+          {presetButtons}
         </div>
       </div>
     </div>
