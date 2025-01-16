@@ -24,7 +24,7 @@ body {
   }
 }
 
-@media (max-width: 1220px) {
+@media (max-width: 1219px) {
   #root {
     min-width: 400px;
     width: 400px;
