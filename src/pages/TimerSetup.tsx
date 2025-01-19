@@ -39,7 +39,7 @@ function TimerSetup() {
       <Button
         type={ButtonType.Primary}
         text="🚀 Start"
-        onClick={() => navigate(`?start=${bitCounter.getTime()}`)}
+        onClick={() => navigate(`?time=${bitCounter.getTime()}`)}
         disabled={!selectedBits.some((x) => x === 1)}
       />
     ),

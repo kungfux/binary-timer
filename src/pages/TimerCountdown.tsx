@@ -10,12 +10,13 @@ function TimerCountdown() {
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const startParam = queryParams.get("start");
+  const timeParam = queryParams.get("time");
+  const isMinimalistMode = queryParams.get("mode") === "minimalist";
 
   const bitCounter = useMemo(() => new BitCounter(), []);
 
   const [timeLeft, setTimeLeft] = useState(() => {
-    bitCounter.setTime(parseInt(startParam || "0"));
+    bitCounter.setTime(parseInt(timeParam || "0"));
     return bitCounter.getTime();
   });
 
@@ -121,18 +122,20 @@ function TimerCountdown() {
             ))}
           </div>
           <p className="my-4">{bitCounter.toString()}</p>
-          {stopButton}
+          {!isMinimalistMode && stopButton}
         </div>
-        <div
-          className={`mt-8 rounded-2xl ${
-            timeLeft <= 0 ? "pointer-events-none opacity-50" : ""
-          }`}
-        >
-          <p className="mb-4">Add time:</p>
-          <div className="flex flex-row justify-center align-center flex-wrap">
-            {addTimeButtons}
+        {!isMinimalistMode && (
+          <div
+            className={`mt-8 rounded-2xl ${
+              timeLeft <= 0 ? "pointer-events-none opacity-50" : ""
+            }`}
+          >
+            <p className="mb-4">Add time:</p>
+            <div className="flex flex-row justify-center align-center flex-wrap">
+              {addTimeButtons}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );
