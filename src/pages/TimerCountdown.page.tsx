@@ -2,13 +2,15 @@ import { createRef, useCallback, useMemo } from "react";
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { Button, ButtonType } from "../components/Button";
-import BitButton from "../components/BitButton";
+import { Button, ButtonType } from "../components/Button.component";
+import BitButton from "../components/BitButton.component";
 import BitCounter from "../BitCounter";
+import { useMuteContext } from "../hooks/useMuteContext.hook";
 
 function TimerCountdown() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { isMuted } = useMuteContext();
   const queryParams = new URLSearchParams(location.search);
   const timeParam = queryParams.get("time");
   const isMinimalistMode = queryParams.get("mode") === "minimalist";
@@ -104,8 +106,8 @@ function TimerCountdown() {
 
   return (
     <>
-      <audio id="bee" src="bee.mp3" preload="auto" />
-      <audio id="doo" src="doo.mp3" preload="auto" />
+      <audio id="bee" src="bee.mp3" preload="auto" muted={isMuted} />
+      <audio id="doo" src="doo.mp3" preload="auto" muted={isMuted} />
       <div className="flex flex-col items-center justify-center text-center">
         <div className="flex flex-col items-center justify-center text-center">
           <h1 className="text-5xl uppercase mb-8">Please stand by</h1>

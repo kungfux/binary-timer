@@ -2,8 +2,8 @@ import { createRef, useMemo } from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Button, ButtonType } from "../components/Button";
-import BitButton from "../components/BitButton";
+import { Button, ButtonType } from "../components/Button.component";
+import BitButton from "../components/BitButton.component";
 import BitCounter from "../BitCounter";
 
 function TimerSetup() {

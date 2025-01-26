@@ -1,8 +1,10 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 
-import TimerSetup from "./pages/TimerSetup";
-import TimerCountdown from "./pages/TimerCountdown";
-import Footer from "./components/Footer";
+import TimerSetup from "./pages/TimerSetup.page";
+import TimerCountdown from "./pages/TimerCountdown.page";
+import Footer from "./components/Footer.component";
+import { MuteProvider } from "./contexts/Mute.context";
+import { MuteButton } from "./components/MuteButton.component";
 
 function App() {
   const location = useLocation();
@@ -11,16 +13,20 @@ function App() {
   const isMinimalistMode = queryParams.get("mode") === "minimalist";
 
   return (
-    <div className="flex flex-col items-center justify-between min-h-screen h-screen min-w-96">
-      <div />
-      <Routes>
-        <Route
-          path="/"
-          element={timeParam ? <TimerCountdown /> : <TimerSetup />}
-        />
-      </Routes>
-      {isMinimalistMode ? <div /> : <Footer />}
-    </div>
+    <MuteProvider>
+      <div className="flex flex-col items-center justify-between min-h-screen h-screen min-w-96">
+        <div className="flex justify-end w-full p-4">
+          <MuteButton />
+        </div>
+        <Routes>
+          <Route
+            path="/"
+            element={timeParam ? <TimerCountdown /> : <TimerSetup />}
+          />
+        </Routes>
+        {isMinimalistMode ? <div /> : <Footer />}
+      </div>
+    </MuteProvider>
   );
 }
 

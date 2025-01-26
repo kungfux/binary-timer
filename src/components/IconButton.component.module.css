@@ -1,0 +1,41 @@
+:root {
+    --button-bg-color: #fff;
+    --button-text-color: #000;
+    --button-hover-bg-color: #777;
+}
+
+.button {
+    color: var(--button-text-color);
+    background-color: transparent;
+    border-radius: 8px;
+    font-size: 1.5em;
+    font-family: inherit;
+    cursor: pointer;
+    width: fit-content;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.button {
+    font-weight: 500;
+    margin: 1rem;
+}
+
+.button:last-child {
+    margin-right: 0;
+}
+
+.button:hover {
+    transform: scale(1.5);
+}
+
+.button:focus,
+.button:focus-visible {
+    outline: none;
+}
+
+@media (prefers-color-scheme: light) {
+    .button {
+        color: var(--button-bg-color);
+        background-color: transparent;
+    }
+}

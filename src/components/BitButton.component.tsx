@@ -3,7 +3,7 @@ import { forwardRef, useImperativeHandle, useState } from "react";
 import NumberFlow from "@number-flow/react";
 
 import "@fontsource/montserrat/400.css";
-import styles from "./BitButton.module.css";
+import styles from "./BitButton.component.module.css";
 
 const BitButton = forwardRef(
   (
@@ -50,6 +50,9 @@ const BitButton = forwardRef(
 
     return (
       <button
+        type="button"
+        aria-label="Bit"
+        title={selected ? "1" : "0"}
         className={`${styles.button} ${getClassName()}`}
         onMouseEnter={() => isClickable && setHovered(true)}
         onMouseLeave={() => isClickable && setHovered(false)}

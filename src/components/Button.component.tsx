@@ -1,4 +1,4 @@
-import styles from "./Button.module.css";
+import styles from "./Button.component.module.css";
 
 const Button = ({
   type,
@@ -16,6 +16,9 @@ const Button = ({
   return (
     <button
       key={crypto.randomUUID()}
+      type="button"
+      aria-label={text}
+      title={text}
       className={[
         styles.button,
         type === ButtonType.Primary ? styles.primary : styles.secondary,
