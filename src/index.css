@@ -5,6 +5,7 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
+  font-size: 1em;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -13,7 +14,6 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1em;
 }
 
 @media (prefers-color-scheme: light) {
@@ -24,8 +24,30 @@ body {
 }
 
 @media (max-width: 1023px) {
+  :root {
+    font-size: 1em;
+  }
+
   #root {
     min-width: 400px;
     width: 400px;
+  }
+}
+
+@media (min-width: 1472px) {
+  :root {
+    font-size: 1.25em;
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    font-size: 1.5em;
+  }
+}
+
+@media (min-width: 2368px) {
+  :root {
+    font-size: 2em;
   }
 }
