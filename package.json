@@ -3,10 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://kungfux.github.io/binarytimer",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "publish": "surge ./dist binarytimer.surge.sh",
     "lint": "eslint .",
     "preview": "vite preview"
   },

@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 
+import routes from "./routes";
 import TimerSetup from "./pages/TimerSetup.page";
 import TimerCountdown from "./pages/TimerCountdown.page";
 import Footer from "./components/Footer.component";
@@ -20,7 +21,7 @@ function App() {
         </div>
         <Routes>
           <Route
-            path="/"
+            path={routes.root.path}
             element={timeParam ? <TimerCountdown /> : <TimerSetup />}
           />
         </Routes>
