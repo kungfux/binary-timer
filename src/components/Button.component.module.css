@@ -8,7 +8,7 @@
     color: var(--button-text-color);
     background-color: var(--button-bg-color);
     border-radius: 8px;
-    font-size: 1em;
+    font-size: 1rem;
     font-family: inherit;
     cursor: pointer;
     width: fit-content;
@@ -23,9 +23,7 @@
 
 .button.primary {
     font-weight: 500;
-    padding: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding: 1rem 2rem;
 }
 
 .button.primary:hover {
@@ -39,9 +37,7 @@
 
 .button.secondary {
     font-weight: 400;
-    padding: .5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: .5rem 1rem;
     opacity: .75;
     margin: .5rem;
 }

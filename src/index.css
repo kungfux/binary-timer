@@ -13,6 +13,7 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
 }
 
 @media (prefers-color-scheme: light) {
@@ -22,7 +23,7 @@ body {
   }
 }
 
-@media (max-width: 1219px) {
+@media (max-width: 1023px) {
   #root {
     min-width: 400px;
     width: 400px;

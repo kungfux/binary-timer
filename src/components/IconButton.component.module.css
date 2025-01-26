@@ -8,7 +8,7 @@
     color: var(--button-text-color);
     background-color: transparent;
     border-radius: 8px;
-    font-size: 1.5em;
+    font-size: 1.5rem;
     font-family: inherit;
     cursor: pointer;
     width: fit-content;

@@ -1,14 +1,14 @@
 .button {
-  height: 5rem;
-  width: 5rem;
-  margin-left: .5rem;
-  margin-right: .5rem;
+  height: 4.5rem;
+  width: 4.5rem;
+  margin-left: .25rem;
+  margin-right: .25rem;
   margin-bottom: 1rem;
   background-color: #61dafb;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 3.2rem;
+  font-size: 3rem;
   font-family: 'Montserrat', sans-serif;
   overflow: hidden;
   transition: background-color 0.3s, border-color 0.3s;
@@ -21,13 +21,13 @@
 .button:nth-child(1),
 .button:nth-child(5),
 .button:nth-child(9) {
-  margin-left: 1rem;
+  margin-left: .75rem;
 }
 
 .button:nth-child(4),
 .button:nth-child(8),
 .button:nth-child(12) {
-  margin-right: 1rem;
+  margin-right: .75rem;
 }
 
 .hovered,
