@@ -46,6 +46,11 @@ class BitCounter {
 
   public toString(): string {
     const time = this.getTime();
+
+    if (time === 0) {
+      return "Time's up!";
+    }
+
     const hours = Math.floor(time / 3600);
     const minutes = Math.floor((time % 3600) / 60);
     const seconds = time % 60;

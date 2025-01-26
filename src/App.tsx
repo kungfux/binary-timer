@@ -4,14 +4,13 @@ import routes from "./routes";
 import TimerSetup from "./pages/TimerSetup.page";
 import TimerCountdown from "./pages/TimerCountdown.page";
 import Footer from "./components/Footer.component";
-import { MuteProvider } from "./contexts/Mute.context";
 import { MuteButton } from "./components/MuteButton.component";
+import { MuteProvider } from "./contexts/Mute.context";
 
 function App() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const timeParam = queryParams.get("time");
-  const isMinimalistMode = queryParams.get("mode") === "minimalist";
 
   return (
     <MuteProvider>
@@ -25,7 +24,7 @@ function App() {
             element={timeParam ? <TimerCountdown /> : <TimerSetup />}
           />
         </Routes>
-        {isMinimalistMode ? <div /> : <Footer />}
+        <Footer />
       </div>
     </MuteProvider>
   );

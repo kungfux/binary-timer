@@ -18,4 +18,3 @@ Available online at [https://kungfux.github.io/binarytimer/](https://kungfux.git
 ## Available parameters
 
 - `time=10` - countdown from time in seconds
-- `mode=minimalist` - hide all controls showing countdown timer only

@@ -16,10 +16,20 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+a {
+  text-decoration: none;
+  color: #3498dbcc;
+
+  &:hover {
+    text-decoration: underline;
+    color: #3498db;
+  }
+}
+
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: #242424;
+    background-color: rgba(255, 255, 255, 0.87);
   }
 }
 
