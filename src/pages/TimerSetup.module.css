@@ -1,0 +1,114 @@
+.typewriter h1 {
+    border-right: .15em solid var(--caret);
+}
+
+.typewriter {
+    --caret: currentcolor;
+}
+
+.typewriter::before {
+    content: "";
+    animation: typing 1s forwards;
+}
+
+.typewriter::after {
+    content: "";
+    border-right: 1.5rem solid var(--caret);
+    margin-left: .5rem;
+    animation: blink 1.5s steps(2) infinite;
+}
+
+@keyframes typing {
+    0% {
+        content: "";
+    }
+
+    5% {
+        content: "1";
+    }
+
+    10% {
+        content: "12";
+    }
+
+    15% {
+        content: "12-";
+    }
+
+    20% {
+        content: "12-b";
+    }
+
+    25% {
+        content: "12-bi";
+    }
+
+    30% {
+        content: "12-bit";
+    }
+
+    35% {
+        content: "12-bit ";
+    }
+
+    40% {
+        content: "12-bit b";
+    }
+
+    45% {
+        content: "12-bit bi";
+    }
+
+    50% {
+        content: "12-bit bin";
+    }
+
+    55% {
+        content: "12-bit bina";
+    }
+
+    60% {
+        content: "12-bit binar";
+    }
+
+    65% {
+        content: "12-bit binary";
+    }
+
+    70% {
+        content: "12-bit binary ";
+    }
+
+    75% {
+        content: "12-bit binary t";
+    }
+
+    80% {
+        content: "12-bit binary ti";
+    }
+
+    85% {
+        content: "12-bit binary tim";
+    }
+
+    90% {
+        content: "12-bit binary time";
+    }
+
+    100% {
+        content: "12-bit binary timer";
+    }
+}
+
+@keyframes blink {
+
+    0% {
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion) {
+    .typewriter::after {
+        animation: none;
+    }
+}

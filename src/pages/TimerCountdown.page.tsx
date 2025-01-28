@@ -1,7 +1,6 @@
 import { createRef, useCallback, useMemo } from "react";
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
 import routes from "../routes";
 import BitButton from "../components/BitButton.component";
 import BitCounter from "../BitCounter";
