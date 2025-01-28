@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "publish": "surge ./dist binarytimer.surge.sh",
     "lint": "eslint .",
     "preview": "vite preview"
   },

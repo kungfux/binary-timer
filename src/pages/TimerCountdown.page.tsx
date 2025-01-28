@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import routes from "../routes";
 import BitButton from "../components/BitButton.component";
 import BitCounter from "../BitCounter";
+import EditableTitle from "../components/EditableTitle.component";
 import { Button, ButtonType } from "../components/Button.component";
 import { useMuteContext } from "../hooks/useMuteContext.hook";
 
@@ -120,7 +121,7 @@ function TimerCountdown() {
       />
       <div className="flex flex-col items-center justify-center text-center">
         <div className="flex flex-col items-center justify-center text-center">
-          <h1 className="text-5xl uppercase mb-8">Please stand by</h1>
+          <EditableTitle />
           <div className="flex flex-row justify-center align-center flex-wrap mt-8">
             {refs.map((_, index) => (
               <BitButton

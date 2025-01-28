@@ -12,12 +12,12 @@
     font-family: inherit;
     cursor: pointer;
     width: fit-content;
-    transition: background-color 0.3s, border-color 0.3s;
+    transition: .2s linear;
 }
 
 .button {
     font-weight: 500;
-    margin: 1rem .5rem;
+    margin: .5rem;
 }
 
 .button:last-child {

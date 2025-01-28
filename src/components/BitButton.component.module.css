@@ -4,16 +4,16 @@
   margin-left: .25rem;
   margin-right: .25rem;
   margin-bottom: 1rem;
-  background-color: #61dafb;
+  background-color: var(--secondary-color);
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 3rem;
   font-family: 'Montserrat', sans-serif;
   overflow: hidden;
-  transition: background-color 0.3s, border-color 0.3s;
+  transition: .2s linear;
 
-  & > .text {
+  &>.text {
     display: inline-block;
   }
 }
@@ -32,5 +32,5 @@
 
 .hovered,
 .selected {
-  background-color: #21a1f1;
+  background-color: var(--primary-color);
 }

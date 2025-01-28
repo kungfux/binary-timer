@@ -1,0 +1,29 @@
+input {
+    color: var(--text-color);
+    text-transform: uppercase;
+    background-color: var(--background-color);
+    outline: none;
+    margin: .5rem;
+    padding: 1rem;
+    width: 80%;
+    border: none;
+    border: .5px solid var(--text-color);
+    border-radius: .25rem;
+    transition: .2s linear;
+
+    &:focus {
+        box-shadow: -5px -5px 0px whitesmoke;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    input {
+        color: var(--background-color);
+        background-color: var(--text-color);
+        border: .5px solid var(--background-color);
+
+        &:focus {
+            box-shadow: -5px -5px 0px black;
+        }
+    }
+}

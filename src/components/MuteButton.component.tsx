@@ -3,7 +3,7 @@ import { useMuteContext } from "../hooks/useMuteContext.hook";
 import { IconButton } from "./IconButton.component";
 
 const MuteButton = () => {
-  const IsMutedSettingKey = "isMuted";
+  const IsMutedSettingKey = "mute";
   const { isMuted, toggleMute } = useMuteContext();
 
   useEffect(() => {

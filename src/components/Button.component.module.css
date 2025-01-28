@@ -12,7 +12,7 @@
     font-family: inherit;
     cursor: pointer;
     width: fit-content;
-    transition: background-color 0.3s, border-color 0.3s;
+    transition: .2s linear;
 }
 
 .button:disabled {
