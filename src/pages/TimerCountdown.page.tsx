@@ -8,6 +8,7 @@ import BitCounter from "../BitCounter";
 import EditableTitle from "../components/EditableTitle.component";
 import { Button, ButtonType } from "../components/Button.component";
 import { useMuteContext } from "../hooks/useMuteContext.hook";
+import { faStop } from "@fortawesome/free-solid-svg-icons";
 
 function TimerCountdown() {
   const navigate = useNavigate();
@@ -84,7 +85,9 @@ function TimerCountdown() {
     () => (
       <Button
         type={ButtonType.Primary}
-        text="🛑 Stop"
+        text="Stop"
+        icon={faStop}
+        iconColor="#ff6467"
         onClick={() => navigate(routes.root.path)}
       />
     ),
@@ -109,13 +112,13 @@ function TimerCountdown() {
     <>
       <audio
         id="bee"
-        src={`${routes.base}/bee.mp3`}
+        src={`${routes.base}bee.mp3`}
         preload="auto"
         muted={isMuted}
       />
       <audio
         id="doo"
-        src={`${routes.base}/doo.mp3`}
+        src={`${routes.base}doo.mp3`}
         preload="auto"
         muted={isMuted}
       />

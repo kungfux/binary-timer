@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useMuteContext } from "../hooks/useMuteContext.hook";
 import { IconButton } from "./IconButton.component";
+import { faVolumeHigh, faVolumeXmark } from "@fortawesome/free-solid-svg-icons";
 
 const MuteButton = () => {
   const IsMutedSettingKey = "mute";
@@ -20,7 +21,7 @@ const MuteButton = () => {
 
   return (
     <IconButton
-      text={isMuted ? "🔇" : "🔊"}
+      icon={isMuted ? faVolumeXmark : faVolumeHigh}
       tooltip={isMuted ? "Unmute" : "Mute"}
       onClick={() => toggleMute()}
     />

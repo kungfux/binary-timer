@@ -12,10 +12,11 @@
   font-family: 'Montserrat', sans-serif;
   overflow: hidden;
   transition: .2s linear;
+}
 
-  &>.text {
-    display: inline-block;
-  }
+.hovered,
+.selected {
+  background-color: var(--primary-color);
 }
 
 .button:nth-child(1),
@@ -28,9 +29,4 @@
 .button:nth-child(8),
 .button:nth-child(12) {
   margin-right: .75rem;
-}
-
-.hovered,
-.selected {
-  background-color: var(--primary-color);
 }

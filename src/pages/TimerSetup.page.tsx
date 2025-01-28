@@ -2,6 +2,8 @@ import { createRef, useMemo } from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
+
 import { Button, ButtonType } from "../components/Button.component";
 import BitButton from "../components/BitButton.component";
 import BitCounter from "../BitCounter";
@@ -38,7 +40,9 @@ function TimerSetup() {
     () => (
       <Button
         type={ButtonType.Primary}
-        text="🚀 Start"
+        text="Start"
+        icon={faPlay}
+        iconColor="#05df72"
         onClick={() => navigate(`?time=${bitCounter.getTime()}`)}
         disabled={!selectedBits.some((x) => x === 1)}
       />

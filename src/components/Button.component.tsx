@@ -1,14 +1,20 @@
-import styles from "./Button.component.module.css";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import styles from "./Button.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Button = ({
   type,
   text,
+  icon,
+  iconColor,
   disabled = false,
   className,
   onClick,
 }: {
   type: ButtonType;
   text?: string;
+  icon?: IconDefinition;
+  iconColor?: string;
   disabled?: boolean;
   className?: string;
   onClick?: () => void;
@@ -27,6 +33,7 @@ const Button = ({
       disabled={disabled}
       onClick={onClick}
     >
+      {icon && <FontAwesomeIcon icon={icon} style={{ color: iconColor }} className="mr-2" />}
       {text}
     </button>
   );

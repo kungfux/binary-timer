@@ -1,6 +1,8 @@
+import styles from "./Footer.module.css";
+
 const Footer = () => {
   return (
-    <footer className="py-4 flex justify-center text-gray-400 dark:text-grey-600">
+    <footer className={`${styles.footer} py-4 flex justify-center`}>
       <p className="my-4">
         <span className="uppercase">
           <a href="https://github.com/kungfux/binarytimer">

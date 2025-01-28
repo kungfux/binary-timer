@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { IconButton } from "./IconButton.component";
 
 import styles from "./EditableTitle.component.module.css";
+import { faPenToSquare, faSquareCheck, faSquareXmark } from "@fortawesome/free-solid-svg-icons";
 
 const EditableTitle = () => {
   const countdownTitleSettingKey = "title";
@@ -24,8 +25,8 @@ const EditableTitle = () => {
   const confirmDiscardButtons = useMemo(
     () => (
       <div>
-        <IconButton text="✅" tooltip="Accept" onClick={accept} />
-        <IconButton text="❌" tooltip="Discard" onClick={discard} />
+        <IconButton tooltip="Accept" icon={faSquareCheck} color="#05df72" onClick={accept} />
+        <IconButton tooltip="Discard" icon={faSquareXmark} color="#ff6467" onClick={discard} />
       </div>
     ),
     [accept, discard]
@@ -45,8 +46,9 @@ const EditableTitle = () => {
   const editButton = useMemo(
     () => (
       <IconButton
-        text="✏️"
-        tooltip="Edit text"
+        icon={faPenToSquare}
+        color="#ffd43b"
+        tooltip="Edit title"
         onClick={() => setEditMode(true)}
       />
     ),
@@ -69,7 +71,7 @@ const EditableTitle = () => {
         <>
           <input
             type="text"
-            style={styles}
+            className={styles.input}
             defaultValue={newText}
             autoFocus
             onChange={(e) => {

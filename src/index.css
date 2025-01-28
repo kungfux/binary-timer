@@ -3,11 +3,13 @@
 :root {
   --primary-color: #21a1f1;
   --secondary-color: #61dafb;
+  --foreground-color: #ffffffde;
   --background-color: #242424;
-  --text-color: rgba(255, 255, 255, 0.87);
+  --link-color: #3498dbcc;
+  --link-active-color: #3498db;
 
   color-scheme: light dark;
-  color: var(--text-color);
+  color: var(--foreground-color);
   background-color: var(--background-color);
 
   font-size: 1em;
@@ -23,19 +25,18 @@ body {
 
 a {
   text-decoration: none;
-  color: #3498dbcc;
+  color: var(--link-color);
   transition: .2s linear;
 
   &:hover {
-    text-decoration: underline;
-    color: #3498db;
+    color: var(--link-active-color);
   }
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     color: var(--background-color);
-    background-color: var(--text-color);
+    background-color: var(--foreground-color);
   }
 }
 

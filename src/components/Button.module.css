@@ -1,0 +1,52 @@
+:root {
+    --button-background-color: #666;
+    --button-foreground-color: #fff;
+}
+
+.button {
+    color: var(--button-foreground-color);
+    border: solid 1px var(--button-background-color);
+    background-color: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    width: fit-content;
+    transition: .2s linear;
+
+    &:hover:not(:disabled) {
+        color: var(--button-background-color);
+        background-color: var(--button-foreground-color);
+    }
+
+    &:focus-visible {
+        outline: 4px auto -webkit-focus-ring-color;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+}
+
+.button.primary {
+    font-weight: 500;
+    padding: 1rem 2rem;
+}
+
+.button.secondary {
+    font-weight: 400;
+    padding: .5rem 1rem;
+    margin: .5rem;
+}
+
+
+@media (prefers-color-scheme: light) {
+    .button {
+        color: var(--button-background-color);
+
+        &:hover:not(:disabled) {
+            color: var(--button-foreground-color);
+            background-color: var(--button-background-color);
+        }
+    }
+}

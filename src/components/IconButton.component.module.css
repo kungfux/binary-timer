@@ -1,41 +1,40 @@
 :root {
-    --button-bg-color: #fff;
-    --button-text-color: #000;
-    --button-hover-bg-color: #777;
+    --icon-button-color: #666;
+    --icon-button-light-color: #fff;
+    --icon-button-dark-color: #000;
 }
 
-.button {
-    color: var(--button-text-color);
+.icon {
+    color: var(--icon-button-color);
     background-color: transparent;
     border-radius: 8px;
     font-size: 1.5rem;
+    font-weight: 500;
     font-family: inherit;
+    margin: .5rem 1rem;
     cursor: pointer;
     width: fit-content;
     transition: .2s linear;
-}
 
-.button {
-    font-weight: 500;
-    margin: .5rem;
-}
+    &:hover {
+        color: var(--icon-button-light-color);
+        transform: scale(1.5);
+    }
 
-.button:last-child {
-    margin-right: 0;
-}
+    &:focus-visible {
+        outline: 4px auto -webkit-focus-ring-color;
+    }
 
-.button:hover {
-    transform: scale(1.5);
-}
-
-.button:focus,
-.button:focus-visible {
-    outline: none;
+    &:last-child {
+        margin-right: 0;
+        margin-left: .5rem;
+    }
 }
 
 @media (prefers-color-scheme: light) {
-    .button {
-        color: var(--button-bg-color);
-        background-color: transparent;
+    .icon {
+        &:hover {
+            color: var(--icon-button-dark-color);
+        }
     }
 }
