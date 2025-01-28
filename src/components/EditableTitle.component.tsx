@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { IconButton } from "./IconButton.component";
-
-import styles from "./EditableTitle.component.module.css";
 import { faPenToSquare, faSquareCheck, faSquareXmark } from "@fortawesome/free-solid-svg-icons";
+import { IconButton } from "./IconButton.component";
+import styles from "./EditableTitle.component.module.css";
 
 const EditableTitle = () => {
   const countdownTitleSettingKey = "title";

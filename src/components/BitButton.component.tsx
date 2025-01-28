@@ -1,7 +1,5 @@
 import { forwardRef, useImperativeHandle, useState } from "react";
-
 import NumberFlow from "@number-flow/react";
-
 import "@fontsource/montserrat/400.css";
 import styles from "./BitButton.module.css";
 

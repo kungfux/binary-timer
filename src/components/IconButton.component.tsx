@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from "./IconButton.component.module.css";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import styles from "./IconButton.component.module.css";
 
 const IconButton = ({
   icon,

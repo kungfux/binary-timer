@@ -8,12 +8,14 @@ import BitCounter from "../BitCounter";
 import EditableTitle from "../components/EditableTitle.component";
 import { Button, ButtonType } from "../components/Button.component";
 import { useMuteContext } from "../hooks/useMuteContext.hook";
+import { useHideContext } from "../hooks/useHideContext.hook";
 import { faStop } from "@fortawesome/free-solid-svg-icons";
 
 function TimerCountdown() {
   const navigate = useNavigate();
   const location = useLocation();
   const { isMuted } = useMuteContext();
+  const { isHidden } = useHideContext();
   const queryParams = new URLSearchParams(location.search);
   const timeParam = queryParams.get("time");
 
@@ -145,10 +147,14 @@ function TimerCountdown() {
             timeLeft <= 0 ? "pointer-events-none opacity-50" : ""
           }`}
         >
-          <p className="mb-4">Add time:</p>
-          <div className="flex flex-row justify-center align-center flex-wrap">
-            {addTimeButtons}
-          </div>
+          {!isHidden && (
+            <>
+              <p className="mb-4">Add time:</p>
+              <div className="flex flex-row justify-center align-center flex-wrap">
+                {addTimeButtons}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>
