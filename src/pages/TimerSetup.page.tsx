@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { Button, ButtonType } from "../components/Button.component";
+import { useOptionsContext } from "../hooks/useOptionsContext.hook";
 import BitButton from "../components/BitButton.component";
 import BitCounter from "../BitCounter";
 import styles from "./TimerSetup.module.css";
@@ -10,6 +11,7 @@ import styles from "./TimerSetup.module.css";
 function TimerSetup() {
   const navigate = useNavigate();
   const bitCounter = useMemo(() => new BitCounter(), []);
+  const { isStopwatchMode } = useOptionsContext();
   const [selectedBits, setSelectedBits] = useState(bitCounter.getBits());
 
   const refs = useMemo(
@@ -28,6 +30,12 @@ function TimerSetup() {
   };
 
   useEffect(() => {
+    if (isStopwatchMode) {
+      setSelectedBits(bitCounter.setTime(0));
+    }
+  }, [bitCounter, isStopwatchMode]);
+
+  useEffect(() => {
     refs.map((ref, index) => {
       if (ref.current?.isSelected() !== (selectedBits[index] === 1)) {
         ref.current?.setAsSelected(selectedBits[index] === 1);
@@ -43,10 +51,10 @@ function TimerSetup() {
         icon={faPlay}
         iconColor="#05df72"
         onClick={() => navigate(`?time=${bitCounter.getTime()}`)}
-        disabled={!selectedBits.some((x) => x === 1)}
+        disabled={!selectedBits.some((x) => x === 1) && !isStopwatchMode}
       />
     ),
-    [bitCounter, navigate, selectedBits]
+    [bitCounter, isStopwatchMode, navigate, selectedBits]
   );
 
   const presetButtons = useMemo(() => {
@@ -70,7 +78,7 @@ function TimerSetup() {
           <BitButton
             key={selectedBits.length - index - 1}
             ref={refs[selectedBits.length - index - 1]}
-            isClickable={true}
+            isClickable={!isStopwatchMode}
             isSelectedInitially={(() => {
               return (
                 bitCounter.getBits()[selectedBits.length - index - 1] === 1
@@ -82,16 +90,18 @@ function TimerSetup() {
       </div>
       <p className="my-4">
         {selectedBits.some((x) => x === 1)
-          ? `${bitCounter.toString()}`
-          : "Select bits and click Start"}
+          ? `${bitCounter.toString(isStopwatchMode)}`
+          : isStopwatchMode ? "Press Start to begin" : "Select bits and press Start"}
       </p>
       {startButton}
-      <div className="mt-8">
-        <p className="mb-4">Presets:</p>
-        <div className="flex flex-row justify-center align-center flex-wrap">
-          {presetButtons}
+      {!isStopwatchMode && (
+        <div className="mt-8">
+          <p className="mb-4">Presets:</p>
+          <div className="flex flex-row justify-center align-center flex-wrap">
+            {presetButtons}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

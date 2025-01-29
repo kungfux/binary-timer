@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { faVolumeHigh, faVolumeXmark } from "@fortawesome/free-solid-svg-icons";
-import { useMuteContext } from "../hooks/useMuteContext.hook";
+import { useOptionsContext } from "../hooks/useOptionsContext.hook";
 import { IconButton } from "./IconButton.component";
 
 const MuteButton = () => {
   const IsMutedSettingKey = "mute";
-  const { isMuted, toggleMute } = useMuteContext();
+  const { isMuted, toggleMute } = useOptionsContext();
 
   useEffect(() => {
     const isMutedSettingValue = localStorage.getItem(IsMutedSettingKey);

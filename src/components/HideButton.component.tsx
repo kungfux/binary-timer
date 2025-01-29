@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { useHideContext } from "../hooks/useHideContext.hook";
+import { useOptionsContext } from "../hooks/useOptionsContext.hook";
 import { IconButton } from "./IconButton.component";
 
 const HideButton = () => {
   const IsHiddenSettingKey = "hide";
-  const { isHidden, toggleHide } = useHideContext();
+  const { isHidden, toggleHide } = useOptionsContext();
 
   useEffect(() => {
     const isHiddenSettingValue = localStorage.getItem(IsHiddenSettingKey);

@@ -6,15 +6,13 @@ import BitButton from "../components/BitButton.component";
 import BitCounter from "../BitCounter";
 import EditableTitle from "../components/EditableTitle.component";
 import { Button, ButtonType } from "../components/Button.component";
-import { useMuteContext } from "../hooks/useMuteContext.hook";
-import { useHideContext } from "../hooks/useHideContext.hook";
+import { useOptionsContext } from "../hooks/useOptionsContext.hook";
 import { faStop } from "@fortawesome/free-solid-svg-icons";
 
 function TimerCountdown() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { isMuted } = useMuteContext();
-  const { isHidden } = useHideContext();
+  const { isMuted, isHidden, isStopwatchMode } = useOptionsContext();
   const queryParams = new URLSearchParams(location.search);
   const timeParam = queryParams.get("time");
 
@@ -56,6 +54,10 @@ function TimerCountdown() {
   }, [navigate]);
 
   useEffect(() => {
+    if (isStopwatchMode) {
+      return;
+    }
+
     switch (timeLeft) {
       case 0:
         playEndSound();
@@ -67,9 +69,13 @@ function TimerCountdown() {
       default:
         break;
     }
+  }, [isStopwatchMode, playCountdownSound, playEndSound, timeLeft]);
 
+  useEffect(() => {
     const timer = setTimeout(() => {
-      const bits = bitCounter.reduceTime(1);
+      const bits = isStopwatchMode
+        ? bitCounter.addTime(1)
+        : bitCounter.reduceTime(1);
 
       refs.forEach((ref, index) => {
         if (ref.current?.isSelected() !== (bits[index] === 1)) {
@@ -80,7 +86,7 @@ function TimerCountdown() {
       setTimeLeft(bitCounter.getTime());
     }, 1000);
     return () => clearTimeout(timer);
-  }, [timeLeft, navigate, refs, bitCounter, playCountdownSound, playEndSound]);
+  }, [bitCounter, isStopwatchMode, refs, timeLeft]);
 
   const stopButton = useMemo(
     () => (
@@ -138,7 +144,7 @@ function TimerCountdown() {
               />
             ))}
           </div>
-          <p className="my-4">{bitCounter.toString()}</p>
+          <p className="my-4">{bitCounter.toString(isStopwatchMode)}</p>
           {stopButton}
         </div>
         <div
@@ -146,7 +152,7 @@ function TimerCountdown() {
             timeLeft <= 0 ? "pointer-events-none opacity-50" : ""
           }`}
         >
-          {!isHidden && (
+          {!isHidden && !isStopwatchMode && (
             <>
               <p className="mb-4">Add time:</p>
               <div className="flex flex-row justify-center align-center flex-wrap">

@@ -44,11 +44,11 @@ class BitCounter {
     return this.getBits();
   }
 
-  public toString(): string {
+  public toString(isStopwatchMode: boolean): string {
     const time = this.getTime();
 
     if (time === 0) {
-      return "Time's up!";
+      return isStopwatchMode ? "0 seconds" : "Time's up!";
     }
 
     const hours = Math.floor(time / 3600);
